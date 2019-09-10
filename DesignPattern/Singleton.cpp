@@ -41,7 +41,7 @@ public:
 	void setData(int param) { data = param; }
 };
 
-Singleton* Singleton::instance = nullptr;
+Singleton* Singleton::instance{};
 
 int main()
 {
