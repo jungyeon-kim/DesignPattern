@@ -1,3 +1,0 @@
-﻿  Singleton.cpp
-Singleton.obj : error LNK2001: "private: static class Singleton * Singleton::instance" (?instance@Singleton@@0PEAV1@EA) 외부 기호를 확인할 수 없습니다.
-C:\project\Visual Studio\Cpp\x64\Debug\DesignPattern.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
