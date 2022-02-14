@@ -3,7 +3,7 @@
 using namespace std;
 
 /*
-	싱글턴 패턴:	오직 한 개의 인스턴스를 생성해 사용하기위한 디자인 패턴
+	싱글턴 패턴:		오직 한 개의 인스턴스를 생성해 사용하기위한 디자인 패턴
 
 	왜 쓰는가?:		전체 게임의 자원을 관리하는 게임매니저 클래스의 경우 하나의 인스턴스만 존재해야한다.
 					게임매니저의 인스턴스를 여러개 생성할 수 있다면, 전체 게임의 흐름을 여러 게임 매니저에 담는 셈이되고
@@ -12,7 +12,8 @@ using namespace std;
 
 	문제점:			전역변수를 다루기 때문에 디버깅이 힘들어지고 충돌이 일어날 수 있다.
 					게으른 초기화 기법을 이용해 런타임에서 초기화가 이루어진다. 문제가 없어 보이지만 
-					게임에서만큼은 초기화되는 메모리나 리소스가 방대할 수록 플레이도중 순간적으로 프레임 드랍이 일어날 확률이 높다.
+					게임에서만큼은 초기화되는 메모리나 리소스가 방대할 수록 플레이도중 순간적으로 프레임 드랍이 일어날 수있다.
+					객체간의 결합도(커플링)가 강해져 유닛 테스트와 리팩토링 작업이 힘들어질 수 있다. (loc 컨테이너 사용 권장)
 */
 
 /*
@@ -26,31 +27,31 @@ using namespace std;
 class Singleton
 {
 private:
-	int data{};
-	static Singleton* instance;
+	int Data{};
+	static Singleton* Instance;
 private:
 	Singleton() { cout << "Singleton()" << endl; }	// 외부에서 객체를 생성할 수 없도록 private에 생성자를 재정의
 	~Singleton() { cout << "~Singleton()" << endl; }// 외부에서 강제로 delete하는 것을 방지
 public:
-	static Singleton* getInstance()
+	static Singleton* GetInstance()
 	{
-		if (!instance) instance = new Singleton{};	// 게으른 초기화, 생성자 한번만 호출
-		return instance;
+		if (!Instance) Instance = new Singleton{};	// 게으른 초기화, 생성자 한번만 호출
+		return Instance;
 	}
-	int getData() const { return data; }
-	void setData(int param) { data = param; }
+	int GetData() const { return Data; }
+	void SetData(int param) { Data = param; }
 };
 
-Singleton* Singleton::instance{};
+Singleton* Singleton::Instance{};
 
 int main()
 {
 	//	굳이 변수에 복사해 사용할 필요는 없지만, 두 변수가 같은 인스턴스를 가진다는 것을 보여주기 위함이다.
-	Singleton* inst1{ Singleton::getInstance() };
-	Singleton* inst2{ Singleton::getInstance() };
+	Singleton* Inst1{ Singleton::GetInstance() };
+	Singleton* Inst2{ Singleton::GetInstance() };
 
-	inst1->setData(10);
-	inst2->setData(-10);
-	cout << inst1->getData() << endl;
-	cout << inst2->getData() << endl;
+	Inst1->SetData(10);
+	Inst2->SetData(-10);
+	cout << Inst1->GetData() << endl;
+	cout << Inst2->GetData() << endl;
 }
