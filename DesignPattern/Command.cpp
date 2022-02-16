@@ -9,16 +9,16 @@ using namespace std;
     단점: 명령이 추가될 때마다 클래스를 추가해야하므로 잡다해질 수 있다.
 */
 
-class Command abstract
+class CCommand abstract
 {
-    Command() = default;
-    virtual ~Command() = default;
+    CCommand() = default;
+    virtual ~CCommand() = default;
 
     virtual void Execute() = 0;
     virtual void Undo() = 0;
 };
 
-class InputController
+class CInputController
 {
     
 };

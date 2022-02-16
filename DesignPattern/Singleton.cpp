@@ -24,31 +24,31 @@ using namespace std;
 						B 라는 전역객체를 참조하려할 때 B가 미처 생성되지 않았을 경우가 생겨 생성시점을 제어해야한다.
 */
 
-class Singleton
+class CSingleton
 {
 private:
 	int Data{};
-	static Singleton* Instance;
+	static CSingleton* Instance;
 private:
-	Singleton() { cout << "Singleton()" << endl; }	// 외부에서 객체를 생성할 수 없도록 private에 생성자를 재정의
-	~Singleton() { cout << "~Singleton()" << endl; }// 외부에서 강제로 delete하는 것을 방지
+	CSingleton() { cout << "Singleton()" << endl; }	// 외부에서 객체를 생성할 수 없도록 private에 생성자를 재정의
+	~CSingleton() { cout << "~Singleton()" << endl; }// 외부에서 강제로 delete하는 것을 방지
 public:
-	static Singleton* GetInstance()
+	static CSingleton* GetInstance()
 	{
-		if (!Instance) Instance = new Singleton{};	// 게으른 초기화, 생성자 한번만 호출
+		if (!Instance) Instance = new CSingleton{};	// 게으른 초기화, 생성자 한번만 호출
 		return Instance;
 	}
 	int GetData() const { return Data; }
 	void SetData(int param) { Data = param; }
 };
 
-Singleton* Singleton::Instance{};
+CSingleton* CSingleton::Instance{};
 
 int main()
 {
 	//	굳이 변수에 복사해 사용할 필요는 없지만, 두 변수가 같은 인스턴스를 가진다는 것을 보여주기 위함이다.
-	Singleton* Inst1{ Singleton::GetInstance() };
-	Singleton* Inst2{ Singleton::GetInstance() };
+	CSingleton* Inst1{ CSingleton::GetInstance() };
+	CSingleton* Inst2{ CSingleton::GetInstance() };
 
 	Inst1->SetData(10);
 	Inst2->SetData(-10);
