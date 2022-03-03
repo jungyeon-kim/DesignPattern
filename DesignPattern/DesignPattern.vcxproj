@@ -139,8 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Observer.cpp" />
     <None Include="Command.cpp" />
-    <ClCompile Include="FlyWeight.cpp" />
+    <None Include="FlyWeight.cpp" />
     <None Include="Singleton.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
