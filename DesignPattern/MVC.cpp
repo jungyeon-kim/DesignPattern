@@ -33,7 +33,7 @@ public:
     void OnUserScroll(float const InScrollOffset)
     {
         Model.Data = InScrollOffset;
-        View.RefreshUI(Model.Data);
+        View.RefreshUI(Model.Data); // View와 Model의 커플링 발생
     }
 };
 
