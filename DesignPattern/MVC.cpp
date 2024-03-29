@@ -31,7 +31,7 @@ class Controller
 {
 private:
     Model Model;
-    vector<View> ViewList;
+    vector<View> ViewList{ 5 };
 public:
     void OnUserScroll(float const InScrollOffset)
     {
